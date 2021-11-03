@@ -3,9 +3,11 @@ package com.multiverse.springpie.controller;
 import com.multiverse.springpie.exception.ResourceNotFoundException;
 import com.multiverse.springpie.model.Employee;
 import com.multiverse.springpie.repository.EmployeeRepository;
+import com.multiverse.springpie.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -15,18 +17,30 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
+    EmployeeService employeeService;
+
+    @Autowired
     private EmployeeRepository employeeRepository;
+
+//    @Autowired
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @GetMapping
     public List<Employee> getAllEmployees(){
         return employeeRepository.findAll();
     }
 
-    // build create employee REST API
+    // encrypted create employee
     @PostMapping
-    public Employee createEmployee(@RequestBody Employee employee) {
-        return employeeRepository.save(employee);
+    public Employee createEmployee(@RequestBody Employee employee){
+        return this.employeeService.save(employee);
     }
+
+    // build create employee REST API
+//    @PostMapping
+//    public Employee createEmployee(@RequestBody Employee employee) {
+//        return employeeRepository.save(employee);
+//    }
 
     // build get employee by id REST API
     @GetMapping("{id}")

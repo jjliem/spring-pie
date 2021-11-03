@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -27,9 +28,17 @@ public class Employee {
     @Column(name = "email_id")
     private String emailId;
 
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "last_updated")
+    private LocalDateTime lastUpdated;
+
 //    {
 //        "firstName": "Jane",
 //        "lastName": "Doe",
-//        "emailId": "janedoe@gmail.com"
+//        "emailId": "janedoe@gmail.com",
+//        "password": "123456",
+//        "lastUpdated": null
 //    }
 }
