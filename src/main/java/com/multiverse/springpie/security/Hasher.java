@@ -1,4 +1,4 @@
-package com.multiverse.springpie.service;
+package com.multiverse.springpie.security;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
